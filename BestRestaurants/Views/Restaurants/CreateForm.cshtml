@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Restaurants</h1>
+@if (Model.Count == 0)
+{
+  <h3>Cuisines must be created before restaurants can be created</h3>
+}
+else
+{
+<form action="/restaurants" method="post">
+  <label for="new-name">Restaurant name:</label>
+  <input id="new-name" name="new-name" type="text" required="true">
+
+  <label for="new-cuisine">Category:</label>
+  <select name="new-cuisine">
+    @foreach(var cuisine in Model)
+    {
+      <option value=@cuisine.GetId()>@cuisine.GetName()</option>
+      }
+  </select>
+
+  <label for="new-price">Restaurant Price:</label>
+  <input id="new-price" name="new-price" type="text" required="true">
+  <button type="submit">Submit</button>
+</form>
+}
+<p><a href="/cuisines/new">Add another cuisine.</a></p>
+<p><a href="/restaurants">Back to main page.</a></p>

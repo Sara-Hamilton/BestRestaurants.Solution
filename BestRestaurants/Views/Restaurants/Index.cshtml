@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Restaurants</h1>
+
+<ul>
+  @foreach(var restaurant in Model)
+  {
+    <li>Restaurant: @restaurant.GetName()  Price Range: @restaurant.GetPrice()</li> | <a href="/restaurants/@restaurant.GetId()/update">Edit</a> | <a href="/restaurants/@restaurant.GetId()/delete">Delete</a>
+  }
+</ul>
+
+<p><a href="/restaurants/new">Add another restaurant.</a></p>
+<p><a href="/cuisines/new">Add another cuisine.</a></p>
+<p><a href="/cuisines">Go to cuisines list.</a></p>
+
+<form action="/restaurants/delete" method="post">
+  <button type="submit" name="button">Clear All Restaurants</button>
+</form>

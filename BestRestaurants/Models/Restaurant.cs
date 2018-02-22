@@ -225,7 +225,7 @@ namespace BestRestaurants.Models
       }
     }
 
-    public void Delete (int id)
+    public void Delete ()
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
@@ -234,7 +234,7 @@ namespace BestRestaurants.Models
 
       MySqlParameter thisId = new MySqlParameter();
       thisId.ParameterName = "@thisId";
-      thisId.Value = id;
+      thisId.Value = this._id;
       cmd.Parameters.Add(thisId);
 
       cmd.ExecuteNonQuery();

@@ -9,7 +9,7 @@ namespace BestRestaurants.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-      return View("Index", BestRestaurantsModel.GetString());
+      return View("Index");
     }
   }
 }
