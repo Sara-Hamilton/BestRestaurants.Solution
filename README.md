@@ -40,9 +40,9 @@ _This is an Epicodus practice project for week 3 of the C# course. Its purpose i
 
     See https://www.learnhowtoprogram.com/c/getting-started-with-c/installing-c for instructions and links.
 
-  * _Create new tables in the database_  
-
-# Add specific instructions with exact table names and attributes
+  *    _Import the data into the database_
+    See https://www.learnhowtoprogram.com/c/database-basics-ee7c9fd3-fcd9-4fff-8b1d-5ff7bfcbf8f0/database-practice-and-world-data for instructions and links.
+    Download the zipfile that is located inside this github repository.
 
   * _Start the Apache and MySql Servers in MAMP_
 
