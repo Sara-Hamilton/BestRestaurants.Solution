@@ -7,7 +7,7 @@
 <ul>
 @foreach(var restaurant in Model)
 {
-  <li>Task: @restaurant.GetDescription() Cuisine: @restaurant.GetCuisineId() Due date: @restaurant.GetPrice() | <a href="/restaurants/@restaurant.GetId()/update">Edit</a></li>
+  <li>Restaurant: @restaurant.GetName() Cuisine: @restaurant.GetCuisineId() Due date: @restaurant.GetPrice() | <a href="/restaurants/@restaurant.GetId()/update">Edit</a></li>
   }
 </ul>
 <p><a href="/restaurants/new">Add another restaurant.</a></p>

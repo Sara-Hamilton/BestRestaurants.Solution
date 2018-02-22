@@ -61,7 +61,7 @@ namespace BestRestaurants.Controllers
       }
 
       [HttpGet("/cuisines/{id}/view")]
-      public ActionResult Viewrestaurants(int id)
+      public ActionResult ViewRestaurants(int id)
       {
         Cuisine thisCuisine = Cuisine.Find(id);
         List<Restaurant> allCuisineRestaurants = thisCuisine.GetRestaurants();

@@ -5,7 +5,7 @@
 <ul>
 @foreach(var cuisine in Model)
 {
-  <li>@cuisine.GetName() | <a href="/cuisines/@cuisine.GetId()/view">View all tasks in this cuisine</a> | <a href="/cuisines/@cuisine.GetId()/update">Edit cuisine</a>  | <a href="/cuisines/@cuisine.GetId()/delete">Delete cuisine</a></li>
+  <li>@cuisine.GetName() | <a href="/cuisines/@cuisine.GetId()/view">View all restaurants with this cuisine</a> | <a href="/cuisines/@cuisine.GetId()/update">Edit cuisine</a>  | <a href="/cuisines/@cuisine.GetId()/delete">Delete cuisine</a></li>
   }
 </ul>
 <p><a href="/cuisines/new">Add another cuisine.</a></p>

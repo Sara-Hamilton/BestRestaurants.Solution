@@ -5,7 +5,7 @@
 <ul>
   @foreach(var restaurant in Model)
   {
-    <li>Restaurant: @restaurant.GetName()  Price Range: @restaurant.GetPrice()</li> | <a href="/restaurants/@restaurant.GetId()/update">Edit</a> | <a href="/restaurants/@restaurant.GetId()/delete">Delete</a>
+    <li>Restaurant: @restaurant.GetName()  Price Range: @restaurant.GetPrice()</li>  <a href="/restaurants/@restaurant.GetId()/update">Edit</a>  <a href="/restaurants/@restaurant.GetId()/delete">Delete</a>
   }
 </ul>
 

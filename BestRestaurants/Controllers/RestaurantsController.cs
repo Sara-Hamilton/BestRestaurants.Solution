@@ -35,7 +35,9 @@ namespace BestRestaurants.Controllers
         public ActionResult DeleteAll()
         {
           Restaurant.DeleteAll();
-          return View("Index");
+          List<Restaurant> allRestaurants = Restaurant.GetAll();
+          return View("Index", allRestaurants);
+          // return View("Index");
         }
 
         [HttpGet("/restaurants/{id}/update")]

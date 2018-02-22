@@ -3,16 +3,16 @@
 }
 
 </hr>
-<h2>Edit Restaurant: @Model['restaurant'].GetName()</h2>
+<h2>Edit Restaurant: @Model["restaurant"].GetName()</h2>
 <form action="/restaurants/@Model["restaurant"].GetId()/update" method="post">
     <label for="name">Name:</label>
     <input type="text" name="new-name" value="@Model["restaurant"].GetName()">
 
     <label for="newcuisineId">Cuisine:</label>
-    <select name="newcuisineId">
+    <select name="new-cuisine">
       @foreach(var cuisine in @Model["cuisines"])
       {
-        <option value=@cuisine.GetId() if()>@cuisine.GetName()</option>
+        <option value=@cuisine.GetId()>@cuisine.GetName()</option>
       }
     </select>
 

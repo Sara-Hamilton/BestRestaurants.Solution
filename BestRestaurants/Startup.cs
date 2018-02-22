@@ -25,14 +25,14 @@ namespace BestRestaurants
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseStaticFiles();
+            app.UseDeveloperExceptionPage();
             app.UseMvc(routes =>
             {
-                app.UseDeveloperExceptionPage();
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseStaticFiles();
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Something went horribly wrong :0");
