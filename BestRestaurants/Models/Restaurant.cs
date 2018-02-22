@@ -8,9 +8,9 @@ namespace BestRestaurants.Models
   public class Restaurant
   {
     private int _id;
-    private string name;
-    private string price;
-    private int cuisine_id;
+    private string _name;
+    private string _price;
+    private int _cuisineId;
 
     public Restaurant(string Name, string Price, int CuisineId, int Id = 0)
     {
@@ -120,7 +120,7 @@ namespace BestRestaurants.Models
     conn.Open();
 
      var cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"INSERT INTO `restaurantss` (name, price, cuisine_id) VALUES (@RestaurantName, @RestaurantPrice, @RestaurantCuisineId);";
+    cmd.CommandText = @"INSERT INTO `restaurants` (name, price, cuisine_id) VALUES (@RestaurantName, @RestaurantPrice, @RestaurantCuisineId);";
 
      MySqlParameter name = new MySqlParameter();
      name.ParameterName = "@RestaurantName";
@@ -186,7 +186,7 @@ namespace BestRestaurants.Models
      return foundRestaurant;
     }
 
-    public void Edit (string newName, DateTime newDuedate, int newCategoryId)
+    public void Edit (string newName, string newPrice, int newCuisineId)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();

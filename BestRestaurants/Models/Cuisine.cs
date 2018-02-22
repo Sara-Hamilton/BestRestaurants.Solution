@@ -89,7 +89,7 @@ namespace BestRestaurants.Models
        return allCuisines;
      }
 
-     public static Category Find(int id)
+     public static Cuisine Find(int id)
      {
        MySqlConnection conn = DB.Connection();
        conn.Open();
