@@ -1,3 +1,16 @@
 @{
   Layout = "_Layout";
 }
+
+<ul>
+@foreach(var cuisine in Model)
+{
+  <li>@cuisine.GetName() | <a href="/cuisines/@cuisine.GetId()/view">View all tasks in this cuisine</a> | <a href="/cuisines/@cuisine.GetId()/update">Edit cuisine</a>  | <a href="/cuisines/@cuisine.GetId()/delete">Delete cuisine</a></li>
+  }
+</ul>
+<p><a href="/cuisines/new">Add another cuisine.</a></p>
+<p><a href="/restaurants">Go to main page.</a></p>
+
+<form action="/cuisines/delete" method="post">
+  <button type="submit" name="button">Clear All Cuisines</button>
+</form>

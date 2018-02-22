@@ -134,62 +134,82 @@ namespace BestRestaurants.Models
      }
 
      public List<Restaurant> GetRestaurants()
+      {
+        List<Restaurant> allRestaurantsByCuisine = new List<Restaurant> {};
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"SELECT * FROM restaurants WHERE cuisine_id = @cuisine_id;";
+
+        MySqlParameter cuisineId = new MySqlParameter();
+        cuisineId.ParameterName = "@cuisine_id";
+        cuisineId.Value = this._id;
+        cmd.Parameters.Add(cuisineId);
+
+        var rdr = cmd.ExecuteReader() as MySqlDataReader;
+        while(rdr.Read())
+        {
+          int restaurantId = rdr.GetInt32(0);
+          string restaurantName = rdr.GetString(1);
+          string restaurantPrice = rdr.GetString(2);
+          int restaurantCuisineId = rdr.GetInt32(3);
+          Restaurant newRestaurant = new Restaurant(restaurantName, restaurantPrice, restaurantCuisineId, restaurantId);
+          allRestaurantsByCuisine.Add(newRestaurant);
+        }
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
+        return allRestaurantsByCuisine;
+      }
+
+    public void Edit (string newName)
     {
-      List<Restaurant> allRestaurantsByCuisine = new List<Restaurant> {};
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM restaurants WHERE cuisine_id = @category_id;";
+      cmd.CommandText = @"UPDATE cuisines SET name = @newName WHERE id = @searchId;";
 
-      MySqlParameter categoryId = new MySqlParameter();
-      categoryId.ParameterName = "@category_id";
-      categoryId.Value = this._id;
-      cmd.Parameters.Add(categoryId);
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = _id;
+      cmd.Parameters.Add(searchId);
 
-      var rdr = cmd.ExecuteReader() as MySqlDataReader;
-      while(rdr.Read())
-      {
-        int restaurantId = rdr.GetInt32(0);
-        string restaurantName = rdr.GetString(1);
-        string restaurantPrice = rdr.GetString(2);
-        int restaurantCuisineId = rdr.GetInt32(3);
-        Restaurant newRestaurant = new Restaurant(restaurantName, restaurantPrice, restaurantCuisineId, restaurantId);
-        allRestaurantsByCuisine.Add(newRestaurant);
-      }
+      MySqlParameter name = new MySqlParameter();
+      name.ParameterName = "@newName";
+      name.Value = newName;
+      cmd.Parameters.Add(name);
+
+      cmd.ExecuteNonQuery();
+      _name = newName;
+
       conn.Close();
       if (conn != null)
       {
         conn.Dispose();
       }
-      return allRestaurantsByCuisine;
     }
 
-    public void Edit (string newName)
-  {
-    MySqlConnection conn = DB.Connection();
-    conn.Open();
-    var cmd = conn.CreateCommand() as MySqlCommand;
-    cmd.CommandText = @"UPDATE categories SET name = @newName WHERE id = @searchId;";
-
-    MySqlParameter searchId = new MySqlParameter();
-    searchId.ParameterName = "@searchId";
-    searchId.Value = _id;
-    cmd.Parameters.Add(searchId);
-
-    MySqlParameter name = new MySqlParameter();
-    name.ParameterName = "@newName";
-    name.Value = newName;
-    cmd.Parameters.Add(name);
-
-    cmd.ExecuteNonQuery();
-    _name = newName;
-
-    conn.Close();
-    if (conn != null)
+    public void Delete()
     {
-      conn.Dispose();
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM cuisines WHERE id = @cuisine_id; DELETE FROM items WHERE cuisine_id = @cuisine_id;";
+
+      MySqlParameter cuisineId = new MySqlParameter();
+      cuisineId.ParameterName = "@cuisine_id";
+      cuisineId.Value = this._id;
+      cmd.Parameters.Add(cuisineId);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
     }
-  }
 
    }
 }
