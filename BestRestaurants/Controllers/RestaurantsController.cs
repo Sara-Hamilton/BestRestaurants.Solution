@@ -68,5 +68,18 @@ namespace BestRestaurants.Controllers
           List<Restaurant> allRestaurants = Restaurant.GetAll();
           return View("Index", allRestaurants);
         }
+
+        [HttpGet("/restaurants/{id}/details")]
+        public ActionResult Details(int id)
+        {
+          Restaurant thisRestaurant = Restaurant.Find(id);
+          Cuisine thisCuisine = Cuisine.Find(thisRestaurant.GetCuisineId());
+          List<Review> allReviews = thisRestaurant.GetReviews();
+          Dictionary<string, object> restaurantDetails = new Dictionary <string, object>();
+          restaurantDetails.Add("restaurant", thisRestaurant);
+          restaurantDetails.Add("cuisine", thisCuisine);
+          restaurantDetails.Add("reviews", allReviews);
+          return View(restaurantDetails);
+        }
     }
   }
