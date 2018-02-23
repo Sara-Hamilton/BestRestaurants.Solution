@@ -7,8 +7,24 @@
     <link rel='stylesheet' href='~/css/styles.css'>
   </head>
   <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/restaurants">Restaurants</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="/cuisines">Cuisines</a></li>
+          <li class="active"><a href="/restaurants">Restaurants</a></li>
+          <li><a href="/cuisines/new">Add a Cuisine</a></li>
+          <li><a href="/restaurants/new">Add a Restaurant</a></li>
+          <li><a href="/reviews/new">Add a Review</a></li>
+        </ul>
+      </div>
+    </nav>
     <div class="container">
-      <h1>Restaurants</h1>
+      <div class="jumbotron">
+        <h1>Restaurants</h1>
+      </div>
         @RenderBody()
     </div>
   </body>

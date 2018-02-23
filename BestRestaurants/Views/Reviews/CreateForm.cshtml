@@ -2,19 +2,34 @@
   Layout = "_Layout";
 }
 
-<form action="/reviews" method="post">
+@if (Model.Count == 0)
+{
+  <h3>Restaurants must be created before reviews can be created</h3>
+}
+else
+{
+<form class="form-inline" action="/reviews" method="post">
+<div class="form-group">
   <label for="new-restaurant">Restaurant:</label>
-  <select name="new-restaurant">
+  <select class="form-control" name="new-restaurant">
     @foreach(var restaurant in Model)
     {
       <option value=@restaurant.GetId()>@restaurant.GetName()</option>
       }
   </select>
-  <label for="new-rating">Star rating:</label>
-  <input id="new-rating" name="new-rating" type="text" required="true">
-  <label for="new-title">Review title:</label>
-  <input id="new-title" name="new-title" type="text" required="true">
-  <label for="new-content">Review content:</label>
-  <input id="new-content" name="new-content" type="text" required="true">
-  <button type="submit">Submit</button>
+  </div>
+  <div class="form-group">
+    <label for="new-rating">Star rating:</label>
+    <input id="new-rating" class="form-control" name="new-rating" type="text" required="true">
+  </div>
+  <div class="form-group">
+    <label for="new-title">Review title:</label>
+    <input id="new-title" class="form-control" name="new-title" type="text" required="true">
+  </div>
+  <div class="form-group">
+    <label for="new-content">Review content:</label>
+    <input id="new-content" class="form-control" name="new-content" type="text" required="true">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
+}

@@ -8,22 +8,26 @@
 }
 else
 {
-<form action="/restaurants" method="post">
-  <label for="new-name">Restaurant name:</label>
-  <input id="new-name" name="new-name" type="text" required="true">
+<form class="form-inline" action="/restaurants" method="post">
+  <div class="form-group">
+    <label for="new-name">Restaurant name:</label>
+    <input id="new-name" class="form-control" name="new-name" type="text" required="true">
+  </div>
 
-  <label for="new-cuisine">Category:</label>
-  <select name="new-cuisine">
-    @foreach(var cuisine in Model)
-    {
-      <option value=@cuisine.GetId()>@cuisine.GetName()</option>
-      }
-  </select>
+  <div class="form-group">
+    <label for="new-cuisine">Category:</label>
+    <select class="form-control" name="new-cuisine">
+      @foreach(var cuisine in Model)
+      {
+        <option value=@cuisine.GetId()>@cuisine.GetName()</option>
+        }
+    </select>
+  </div>
 
-  <label for="new-price">Restaurant Price:</label>
-  <input id="new-price" name="new-price" type="text" required="true">
-  <button type="submit">Submit</button>
+  <div class="form-group">
+    <label for="new-price">Restaurant Price:</label>
+    <input id="new-price" class="form-control" name="new-price" type="text" required="true">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
 }
-<p><a href="/cuisines/new">Add another cuisine.</a></p>
-<p><a href="/restaurants">Back to main page.</a></p>

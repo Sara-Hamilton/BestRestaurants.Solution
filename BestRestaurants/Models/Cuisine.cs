@@ -124,7 +124,7 @@ namespace BestRestaurants.Models
        MySqlConnection conn = DB.Connection();
        conn.Open();
        var cmd = conn.CreateCommand() as MySqlCommand;
-       cmd.CommandText = @"DELETE FROM cuisines, items USING cuisines LEFT JOIN restaurants on (cuisines.id = items.cuisine_id);";
+       cmd.CommandText = @"DELETE FROM cuisines, restaurants USING cuisines LEFT JOIN restaurants on (cuisines.id = restaurants.cuisine_id);";
 
        cmd.ExecuteNonQuery();
        conn.Close();

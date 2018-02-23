@@ -2,15 +2,24 @@
   Layout = "_Layout";
 }
 
-<ul>
+@if (Model.Count == 0)
+{
+  <h3>No cuisines yet</h3>
+}
+else
+{
+  <h2>Cuisines</h2>
+<div class="list-group">
 @foreach(var cuisine in Model)
 {
-  <li>@cuisine.GetName() | <a href="/cuisines/@cuisine.GetId()/view">View all restaurants with this cuisine</a> | <a href="/cuisines/@cuisine.GetId()/update">Edit cuisine</a>  | <a href="/cuisines/@cuisine.GetId()/delete">Delete cuisine</a></li>
+  <h2 class="list-group-item">@cuisine.GetName()</h2>
+  <a href="/cuisines/@cuisine.GetId()/view" class="list-group-item">View all restaurants with this cuisine</a>
+  <a href="/cuisines/@cuisine.GetId()/update" class="list-group-item">Edit this cuisine</a>
+  <a href="/cuisines/@cuisine.GetId()/delete" class="list-group-item">Delete this cuisine</a>
   }
-</ul>
-<p><a href="/cuisines/new">Add another cuisine.</a></p>
-<p><a href="/restaurants">Go to main page.</a></p>
+</div>
 
 <form action="/cuisines/delete" method="post">
-  <button type="submit" name="button">Clear All Cuisines</button>
+  <button type="submit" name="button" class="btn btn-default">Clear All Cuisines</button>
 </form>
+}
