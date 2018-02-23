@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+<h2> Restaurant: @Model["restaurant"].GetName()</h2>
+<h3> Cuisine: @Model["cuisine"].GetName()</h3>
+
+<h3>Reviews:</h3>
+<ul>
+  @foreach(var review in @Model["reviews"])
+  {
+    <li>@review.GetRating() @review.GetTitle()</li>
+    <li>@review.GetContent()</li>
+    <li></li>
+  }
+</ul>
+
+<h4><a href="/reviews/new">Review this restaurant</a></h4>
+<h4><a href="/restaurants">Return home</a></h4>
